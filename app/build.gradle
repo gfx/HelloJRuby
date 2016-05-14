@@ -1,0 +1,38 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.github.gfx.android.hellojruby"
+        minSdkVersion 21
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE.RUBY'
+        exclude 'META-INF/BSDL'
+        exclude 'META-INF/LEGAL'
+        exclude 'META-INF/COPYING'
+    }
+}
+dependencies {
+
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'org.jruby:jruby:1.7.24'
+
+    testCompile 'junit:junit:4.12'
+}
+
+tasks.withType(JavaCompile) {
+    //options.compilerArgs << "--core-library"
+}
